@@ -16,17 +16,15 @@ h5,.jumbotron
 {
     background-color: white;
     border-style: groove;
-    padding: 20px;    
 }
 .event-block
 {
-    background-color: lightblue;
+    background-color:lightgray;
     border-style: groove;
-    padding: 20px;
 }
 .save-block
 {
-    background-color: lightgreen;
+    background-color: cadetblue;
+    cursor: pointer;
     border-style: groove;
-    padding: 20px;
 }
