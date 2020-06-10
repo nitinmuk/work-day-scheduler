@@ -1,0 +1,32 @@
+body
+{
+    background-color: rgb(243, 232, 232);
+}
+h5,.jumbotron
+{
+    color: white;
+    background-color: cadetblue;
+    border-color: cadetblue;
+}
+.text-center
+{
+    text-align: center;
+}
+.time-block
+{
+    background-color: white;
+    border-style: groove;
+    padding: 20px;    
+}
+.event-block
+{
+    background-color: lightblue;
+    border-style: groove;
+    padding: 20px;
+}
+.save-block
+{
+    background-color: lightgreen;
+    border-style: groove;
+    padding: 20px;
+}
