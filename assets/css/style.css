@@ -14,23 +14,25 @@ h5,.jumbotron
 }
 .time-block
 {
-    background-color: white;
+    color: white;
+    background-color: cadetblue;
     border-style: groove;
+    
 }
 .event-block
 {
     background-color:lightgray;
     border-style: groove;
 }
-.save-block
+.save-btn
 {
+    color: white;
     background-color: cadetblue;
-    cursor: pointer;
     border-style: groove;
 }
 
 /**
-* event color code is gray for past, coral for present and green for future
+* event color code is gray for past, coral for present and blue for future
 */
 .past
 {
@@ -42,5 +44,5 @@ h5,.jumbotron
 }
 .future
 {
-    background-color: lightgreen;
+    background-color: lightblue;
 }

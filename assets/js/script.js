@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(document).on("click", ".save-block", saveEventDetails);
+    $(document).on("click", ".save-btn", saveEventDetails);
     setInterval(function () {
         renderTime();
         renderEventColorCode();
@@ -15,7 +15,11 @@ $(document).ready(function () {
             //console.log(item);
             const blockHour = parseInt($(item).attr("data-time"));
             // console.log(typeof(blockHour));
-            const currentTimeHour = parseInt(moment().format('h'));
+            var currentTimeHour = parseInt(moment().format('h'));
+            if(moment().format('a') == "pm")
+            {
+                currentTimeHour += 12;
+            }
             if (blockHour === currentTimeHour) {
                 resetTimeClass(item, "present");
             }
