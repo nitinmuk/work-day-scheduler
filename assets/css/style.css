@@ -30,6 +30,11 @@ h5,.jumbotron
     background-color: cadetblue;
     border-style: groove;
 }
+.need-save
+{
+    color:black;
+    background-color: lightyellow;
+}
 
 /**
 * event color code is gray for past, coral for present and blue for future

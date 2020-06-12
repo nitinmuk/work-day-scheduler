@@ -4,6 +4,7 @@ $(document).ready(function () {
         renderTime();
         renderEventColorCode();
     }, 60000);
+    $(document).on("keyup", ".event-block", changeSaveBtnColor);
     renderTime();
     renderEventColorCode();
     var eventBlockDetails = [];
@@ -16,8 +17,7 @@ $(document).ready(function () {
             const blockHour = parseInt($(item).attr("data-time"));
             // console.log(typeof(blockHour));
             var currentTimeHour = parseInt(moment().format('h'));
-            if(moment().format('a') == "pm")
-            {
+            if (currentTimeHour != 12 && moment().format('a') == "pm") {
                 currentTimeHour += 12;
             }
             if (blockHour === currentTimeHour) {
@@ -54,13 +54,26 @@ $(document).ready(function () {
 
     function saveEventDetails() {
         const eventBlockEl = $(this).parent().parent().children("textarea")
-        const eventDetails = eventBlockEl.val();
+        const eventDetails = eventBlockEl.val().trim();
         const timeHour = eventBlockEl.attr("data-time");
-        const eventTime = {};
-        eventTime['timeHour'] = timeHour;
-        eventTime['eventDetails'] = eventDetails;
-        eventBlockDetails.push(eventTime);
+        var foundIndex = -1;
+        $.each(eventBlockDetails, function (index, item) {
+            if (item.timeHour == timeHour) {
+                foundIndex = index;
+            }
+        });
+        if (-1 == foundIndex) {
+            const eventTime = {};
+            eventTime['timeHour'] = timeHour;
+            eventTime['eventDetails'] = eventDetails;
+            eventBlockDetails.push(eventTime);
+        }
+        else {
+            eventBlockDetails[foundIndex].eventDetails = eventDetails;
+        }
+
         localStorage.setItem("eventBlockDetails", JSON.stringify(eventBlockDetails));
+        $(this).removeClass("need-save");
     }
 
     function renderEventDetails() {
@@ -68,6 +81,44 @@ $(document).ready(function () {
             const timeHour = item.timeHour;
             $("#event-block-" + timeHour).val(item.eventDetails);
         });
+    }
+
+    function changeSaveBtnColor() {
+        const saveNeeded = isSaveNeeded($(this).attr("data-time"), $(this).val());
+        console.log(saveNeeded);
+        if (saveNeeded) {
+            $(this).parent()
+                .children("div.input-group-append")
+                .children("button")
+                .addClass("need-save");
+        }
+        else {
+            console.log("removing need-save class");
+            $(this).parent()
+                .children("div.input-group-append")
+                .children("button")
+                .removeClass("need-save");
+        }
+
+    }
+
+    function isSaveNeeded(hourNumber, currentText) {
+        console.log(currentText);
+        var saveNeeded;
+        $.each(eventBlockDetails, function (index, item) {
+            if (hourNumber == item.timeHour) {
+                console.log(item.eventDetails);
+                if (currentText.trim() != item.eventDetails) {
+                    console.log("Both are not same");
+                    saveNeeded = true;
+                }
+                else {
+                    console.log("Both are same");
+                    saveNeeded = false;
+                }
+            }
+        });
+        return saveNeeded;
     }
 });
 
