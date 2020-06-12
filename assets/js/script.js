@@ -25,9 +25,7 @@ $(document).ready(function () {
      */
     function renderEventColorCode() {
         $.each($(".event-block"), function (index, item) {
-            //console.log(item);
             const blockHour = parseInt($(item).attr("data-time"));
-            // console.log(typeof(blockHour));
             var currentTimeHour = parseInt(moment().format('h'));
             if (12 != currentTimeHour && "pm" == moment().format('a')) {
                 currentTimeHour += 12;
@@ -121,19 +119,14 @@ $(document).ready(function () {
      */
     function changeSaveBtnColor() {
         const saveNeeded = isSaveNeeded($(this).attr("data-time"), $(this).val());
-        console.log(saveNeeded);
+        const saveBtn = $(this).parent()
+            .children("div.input-group-append")
+            .children("button");
         if (saveNeeded) {
-            $(this).parent()
-                .children("div.input-group-append")
-                .children("button")
-                .addClass("need-save");
+            saveBtn.addClass("need-save");
         }
         else {
-            console.log("removing need-save class");
-            $(this).parent()
-                .children("div.input-group-append")
-                .children("button")
-                .removeClass("need-save");
+            saveBtn.removeClass("need-save");
         }
 
     }
@@ -144,17 +137,13 @@ $(document).ready(function () {
      * @param {*} currentText current text present in event block
      */
     function isSaveNeeded(hourNumber, currentText) {
-        console.log(currentText);
         var saveNeeded = false;
         $.each(eventBlockDetails, function (index, item) {
             if (hourNumber == item.timeHour) {
-                console.log(item.eventDetails);
                 if (currentText.trim() != item.eventDetails) {
-                    console.log("Both are not same");
                     saveNeeded = true;
                 }
                 else {
-                    console.log("Both are same");
                     saveNeeded = false;
                 }
             }
