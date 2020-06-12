@@ -28,3 +28,19 @@ h5,.jumbotron
     cursor: pointer;
     border-style: groove;
 }
+
+/**
+* event color code is gray for past, coral for present and green for future
+*/
+.past
+{
+    background-color: lightgray;
+}
+.present
+{
+    background-color: lightcoral;
+}
+.future
+{
+    background-color: lightgreen;
+}
