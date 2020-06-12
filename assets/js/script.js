@@ -104,7 +104,7 @@ $(document).ready(function () {
 
     function isSaveNeeded(hourNumber, currentText) {
         console.log(currentText);
-        var saveNeeded;
+        var saveNeeded = false;
         $.each(eventBlockDetails, function (index, item) {
             if (hourNumber == item.timeHour) {
                 console.log(item.eventDetails);
@@ -118,6 +118,10 @@ $(document).ready(function () {
                 }
             }
         });
+        if(currentText.trim().length >0)
+        {
+            saveNeeded = true;
+        }
         return saveNeeded;
     }
 });
