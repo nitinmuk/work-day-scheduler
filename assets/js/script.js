@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // event listerner which will trigger save event handler whenever user click
+    // event listener which will trigger save event handler whenever user click
     //on save button.
     $(document).on("click", ".save-btn", saveEventDetails);
     // need to refresh time and hour color code after each minute so that correct color
@@ -137,9 +137,11 @@ $(document).ready(function () {
      * @param {*} currentText current text present in event block
      */
     function isSaveNeeded(hourNumber, currentText) {
+        var indexFound = false;
         var saveNeeded = false;
         $.each(eventBlockDetails, function (index, item) {
             if (hourNumber == item.timeHour) {
+                indexFound = true;
                 if (currentText.trim() != item.eventDetails) {
                     saveNeeded = true;
                 }
@@ -148,7 +150,7 @@ $(document).ready(function () {
                 }
             }
         });
-        if (currentText.trim().length > 0) {
+        if (!indexFound && currentText.trim().length > 0) {
             saveNeeded = true;
         }
         return saveNeeded;
