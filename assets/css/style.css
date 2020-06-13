@@ -12,7 +12,7 @@ h5,.jumbotron
 {
     text-align: center;
 }
-.time-block
+.time-block,.save-btn
 {
     color: white;
     background-color: cadetblue;
@@ -24,12 +24,10 @@ h5,.jumbotron
     background-color:lightgray;
     border-style: groove;
 }
-.save-btn
-{
-    color: white;
-    background-color: cadetblue;
-    border-style: groove;
-}
+
+/**
+*used to change save button stlying when the save needed to update event details.
+*/
 .need-save
 {
     color:black;
